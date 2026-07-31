@@ -42,3 +42,80 @@
 #include <iostream>
 using namespace std;
 
+const int MAX_SIZE = 100;
+
+// Function prototypes
+int computeSum(int arr[], int n);
+double computeAverage(int arr[], int n);
+int computeMax(int arr[], int n);
+int computeMin(int arr[], int n);
+
+int main() {
+    int numbers[MAX_SIZE];
+    int n;
+
+    cout << "How many numbers? ";
+    cin >> n;
+
+    if (n <= 0) {
+        cout << "Error: N must be a positive integer." << endl;
+        return 1;
+    }
+
+    if (n > MAX_SIZE) {
+        cout << "Error: N exceeds maximum allowed size of " << MAX_SIZE << "." << endl;
+        return 1;
+    }
+
+    for (int i = 0; i < n; i++) {
+        cout << "Enter number " << (i + 1) << ": ";
+        cin >> numbers[i];
+    }
+
+    int sum = computeSum(numbers, n);
+    double avg = computeAverage(numbers, n);
+    int maxVal = computeMax(numbers, n);
+    int minVal = computeMin(numbers, n);
+
+    cout << "\nResults:" << endl;
+    cout << "Sum:     " << sum << endl;
+    cout << "Average: " << avg << endl;
+    cout << "Maximum: " << maxVal << endl;
+    cout << "Minimum: " << minVal << endl;
+
+    return 0;
+}
+
+int computeSum(int arr[], int n) {
+    int total = 0;
+    for (int i = 0; i < n; i++) {
+        total += arr[i];
+    }
+    return total;
+}
+
+double computeAverage(int arr[], int n) {
+    return static_cast<double>(computeSum(arr, n)) / n;
+}
+
+int computeMax(int arr[], int n) {
+    int maxVal = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > maxVal) {
+            maxVal = arr[i];
+        }
+    }
+    return maxVal;
+}
+
+int computeMin(int arr[], int n) {
+    int minVal = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] < minVal) {
+            minVal = arr[i];
+        }
+    }
+    return minVal;
+}
+
+
